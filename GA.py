@@ -40,7 +40,6 @@ for episode in range(config.num_generations):
         summed_reward = 0
         for i in range(config.episodes_to_solve):
             reward = network.playthrough(env)
-            #print reward
             summed_reward += reward
 
 
@@ -53,14 +52,6 @@ for episode in range(config.num_generations):
             print 'The game is solved!'
             break      
         
-        print '\n\n\n\n\n'
-        print network.w_in
-        print '\n'
-        print network.w_hidden
-        print '\n'
-        print network.w_out
-        print '\n'
-       
         sys.stdout.flush()
 
     #refill the population      
@@ -72,11 +63,5 @@ for episode in range(config.num_generations):
         mutants.append(new_pol)
     population += mutants
 
-
-
-s = [0.02159946, -0.00569069, 0.00926815, -0.03274532]
-a = network.predict(s)
-print s
-print a
     
         
