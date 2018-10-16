@@ -2,6 +2,7 @@ import os
 import sys
 import numpy as np
 import gym
+import time
 
 from GA_Config import Config
 from GA_Network import Network
@@ -18,6 +19,7 @@ for i in range(config.num_policies):
 
 #every episode evaluates each policy
 for episode in range(config.num_generations):
+    start = time.time()
     Reward = np.zeros(config.num_policies)
     for policy in range(config.num_policies):
         curr_pol = population[policy]
@@ -25,7 +27,7 @@ for episode in range(config.num_generations):
             Reward[policy] += curr_pol.playthrough(env)
 
     Reward /= config.num_iterations
-    print(episode, np.mean(Reward), np.max(Reward))
+    print('Episode: %i, Mean: %.2f, Max: %.2f, Time: %.2f' episode, np.mean(Reward), np.max(Reward), time.time() - start)
 
     #sort the policies by score achieved and remove the lowest scoring 
     l1, l2 = zip(*sorted(zip(Reward, population)))
@@ -33,8 +35,7 @@ for episode in range(config.num_generations):
     Reward = list(l1[int(config.mutate_per*config.num_policies):])
 
     #save and check if solved
-    #if (episode % config.checkpoint_freq == 0) and (episode != 0):
-    if (episode % config.checkpoint_freq == 0):
+    if (episode % config.checkpoint_freq == 0) and (episode != 0):
         network = population[-1] #take the best network
 
         summed_reward = 0
