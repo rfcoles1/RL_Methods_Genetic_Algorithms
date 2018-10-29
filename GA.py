@@ -17,6 +17,10 @@ for i in range(config.num_policies):
     pop = Network(config)
     population.append(pop)
 
+if config.load_model == True:
+    weights = np.load(config.model_path + config.version_to_load)
+    population[0].load_net(weights['w_in'], weights['w_h'], weights['w_out'])
+
 #every episode evaluates each policy
 for episode in range(config.num_generations):
     start = time.time()
@@ -27,7 +31,7 @@ for episode in range(config.num_generations):
             Reward[policy] += curr_pol.playthrough(env)
 
     Reward /= config.num_iterations
-    print('Episode: %i, Mean: %.2f, Max: %.2f, Time: %.2f' episode, np.mean(Reward), np.max(Reward), time.time() - start)
+    print('Episode: %i, Mean: %.2f, Max: %.2f, Time: %.2f', episode, np.mean(Reward), np.max(Reward), time.time() - start)
 
     #sort the policies by score achieved and remove the lowest scoring 
     l1, l2 = zip(*sorted(zip(Reward, population)))

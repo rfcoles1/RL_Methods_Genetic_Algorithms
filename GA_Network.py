@@ -54,3 +54,11 @@ class Network():
 
             if done:
                 return total_reward
+
+    def load_net(self, w_i, w_h, w_o):
+        self.w_in = w_i
+        self.w_hidden = w_h
+        self.w_out = w_o
+
+
+
