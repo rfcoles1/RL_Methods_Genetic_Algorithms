@@ -31,10 +31,10 @@ for episode in range(config.num_generations):
             Reward[policy] += curr_pol.playthrough(env)
 
     Reward /= config.num_iterations
-    print('Episode: %i, Mean: %.2f, Max: %.2f, Time: %.2f', episode, np.mean(Reward), np.max(Reward), time.time() - start)
+    print('Episode: %i, Mean: %.2f, Max: %.2f, Time: %.2f' %(episode, np.mean(Reward), np.max(Reward), time.time() - start))
 
     #sort the policies by score achieved and remove the lowest scoring 
-    l1, l2 = zip(*sorted(zip(Reward, population)))
+    l1, l2 = zip(*sorted(zip(Reward, population), key = lambda x: x[0]))
     population = list(l2[int(config.mutate_per*config.num_policies):])
     Reward = list(l1[int(config.mutate_per*config.num_policies):])
 
@@ -49,8 +49,8 @@ for episode in range(config.num_generations):
 
 
         score = summed_reward/config.episodes_to_solve
-        print 'Average score over ' + \
-            str(config.episodes_to_solve) + ' episodes: ' + str(score) 
+        print('Average score over ' + \
+            str(config.episodes_to_solve) + ' episodes: ' + str(score))
         np.savez(config.model_path + str(episode) + '.npz',\
             w_in = network.w_in, w_h = network.w_hidden, w_out = network.w_out)
         if (score > config.score_to_solve):

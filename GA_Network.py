@@ -1,4 +1,6 @@
 import numpy as np 
+import time
+
 
 class Network():
     def __init__(self, config):
@@ -39,10 +41,12 @@ class Network():
     def playthrough(self, env):
         s = env.reset()
         total_reward = 0
+        eps = 0
+        reward_history = np.zeros(self.config.max_episode_steps)
+
         while True:
             #perform action based on this policy
-            a = self.predict(s)
-
+            a = self.predict(s.flatten())
             if self.config.mode == 'discrete':
                 a = np.argmax(a)
             s, reward, done, _ = env.step(a)
@@ -51,9 +55,15 @@ class Network():
             total_reward += reward
             '''when only final score is taken'''
             #total_reward = reward
-
+            
+            reward_history[eps] = reward
+            
+            eps += 1
             if done:
+                """Used for final score or summed score """
                 return total_reward
+                """Used for single max score over the game"""
+                #return max(reward_history)
 
     def load_net(self, w_i, w_h, w_o):
         self.w_in = w_i
