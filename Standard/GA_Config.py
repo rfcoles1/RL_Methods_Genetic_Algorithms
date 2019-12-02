@@ -3,10 +3,9 @@ import sys
 import gym
 import time
 
-sys.path.insert(0,'../')
+sys.path.insert(0,'../../')
 import Games
 import GP_Games
-import MultiAgent_Games
 
 class Config:
 
