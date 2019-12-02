@@ -2,7 +2,9 @@
 A implementation of a Genetic Algorithm for optimising the weights of an ANN.
 
 # Example
-![image](https://drive.google.com/file/d/1xmLc5sFmtzIW0k1BXPVBDbULGgRKbB2U/view?usp=sharing)
+
+![image](//drive.google.com/uc?export=view&id=1xmLc5sFmtzIW0k1BXPVBDbULGgRKbB2U)
+
 Numerical example for a simple Genetic Algorithm (a) The initial spread of solutions. (b) In the next generation, there are no solutions in the top-left quadrant where the fitness is lowest. (c) The population has now collapsed around a small area.
 
 # Author
