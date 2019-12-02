@@ -5,10 +5,12 @@ import time
 
 sys.path.insert(0,'../')
 import Games
+import GP_Games
+import MultiAgent_Games
 
 class Config:
 
-    env_name = 'CartPole-v0'
+    env_name = 'Flashbang-v1'
     mode = 'discrete' #either discrete or continuous depending on the action set of the game
 
     game = gym.make(env_name)
@@ -25,8 +27,8 @@ class Config:
         a_range = game.action_space.high - game.action_space.low
 
     num_policies = 100 #size of population
-    num_generations = 1000 #number of generations
-    checkpoint_freq = 1 #number of generations between checkpoints
+    num_generations = 10001 #number of generations
+    checkpoint_freq = 100 #number of generations between checkpoints
     num_iterations = 5 #number of games each policy is evaluated for, score is averaged
     
     #define the network 
@@ -42,9 +44,9 @@ class Config:
 
     #define when the game is solved,
     #must have an average score higher than the benchmark over a series of consecutive games
-    score_to_solve = 1
-    episodes_to_solve = 1
+    score_to_solve = 20000
+    episodes_to_solve = 10
 
     load_model = False
-    version_to_load = '0.npz'
+    version_to_load = '7.npz'
 

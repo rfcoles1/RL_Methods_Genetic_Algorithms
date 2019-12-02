@@ -52,9 +52,9 @@ class Network():
             s, reward, done, _ = env.step(a)
 
             '''when the score is summed through entire game'''
-            total_reward += reward
+            #total_reward += reward
             '''when only final score is taken'''
-            #total_reward = reward
+            total_reward = reward
             
             reward_history[eps] = reward
             

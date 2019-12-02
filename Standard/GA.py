@@ -8,8 +8,15 @@ from GA_Config import Config
 from GA_Network import Network
 from GA_Helper import *
 
+import argparse
+parser = argparse.ArgumentParser()
+parser.add_argument('n', type = int)
+args = parser.parse_args()
+#f = open("_results" + str(args.n) + ".txt", 'a')
+
 config = Config()
 env = gym.make(Config.env_name)
+
 
 #fill the population
 population = []
@@ -32,6 +39,7 @@ for episode in range(config.num_generations):
 
     Reward /= config.num_iterations
     print('Episode: %i, Mean: %.2f, Max: %.2f, Time: %.2f' %(episode, np.mean(Reward), np.max(Reward), time.time() - start))
+    #np.savetxt(f, np.reshape(Reward, [1,len(Reward)]))
 
     #sort the policies by score achieved and remove the lowest scoring 
     l1, l2 = zip(*sorted(zip(Reward, population), key = lambda x: x[0]))
@@ -68,5 +76,5 @@ for episode in range(config.num_generations):
         mutants.append(new_pol)
     population += mutants
 
-    
+#f.close()    
         
