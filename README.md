@@ -3,9 +3,13 @@ A implementation of a Genetic Algorithm for optimising the weights of an ANN.
 
 # Example
 
-![image](//drive.google.com/uc?export=view&id=1xmLc5sFmtzIW0k1BXPVBDbULGgRKbB2U)
+![image](https://drive.google.com/uc?export=view&id=1xmLc5sFmtzIW0k1BXPVBDbULGgRKbB2U)
 
-Numerical example for a simple Genetic Algorithm (a) The initial spread of solutions. (b) In the next generation, there are no solutions in the top-left quadrant where the fitness is lowest. (c) The population has now collapsed around a small area.
+A 2D numerical example for a simple Genetic Algorithm (a) The initial spread of solutions. (b) In the next generation, there are no solutions in the top-left quadrant where the fitness is lowest. (c) The population has now collapsed around a small area.
+
+# Requirements 
+numpy, gym
+Built using Python 2.7
 
 # Author
 Rory Coles
